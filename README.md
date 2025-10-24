@@ -30,3 +30,15 @@ The IVR is powered by Twilio for telephony integration and FastAPI as the backen
 
  AI-Enabled-Conversational-IVR-Modernization-Framework
 AI-powered IVR system that modernizes customer support using FastAPI, Twilio, and conversational intelligence.
+
+
+## Setup
+1. Install Python 3.11 or above.
+2. Clone the repository:
+   git clone https://github.com/your-username/AI-Enabled-Conversational-IVR.git
+3. Install dependencies:
+   pip install -r requirements.txt
+4. Run the FastAPI server:
+   uvicorn msp_ivr_twilio:app --reload
+5. Expose via ngrok for Twilio integration:
+   ngrok http 8000
