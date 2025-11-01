@@ -52,7 +52,7 @@ The goal is to make IVRs more natural, intelligent, and user-friendly with minim
 
 ```bash
 pip install fastapi uvicorn pyttsx3 SpeechRecognition pyaudio
-python nazia_ivr_backend.py
+python milestone3.py
 ```
 
 ---
