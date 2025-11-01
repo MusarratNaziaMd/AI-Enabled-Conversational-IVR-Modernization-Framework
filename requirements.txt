@@ -1,5 +1,12 @@
+# === Milestone 2 (Twilio-based IVR) ===
 fastapi==0.101.1
 uvicorn==0.25.0
 twilio==8.15.0
 pydantic==2.6.0
 python-dotenv==1.0.0
+
+# === Milestone 3 (Web-based Voice IVR) ===
+pyttsx3==2.90
+SpeechRecognition==3.10.1
+pyaudio
+sqlite3-binary
