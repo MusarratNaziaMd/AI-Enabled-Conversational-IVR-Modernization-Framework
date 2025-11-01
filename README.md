@@ -1,44 +1,85 @@
 
-**AI-Enabled Conversational IVR Modernization Framework** using **FastAPI** and **Twilio**.  
-This project demonstrates a simple mobile service provider (MSP) IVR system that allows users to:
 
-- Check data balance
-- Recharge their plan
-- Report issues via DTMF input or voice recording
 
-The IVR is powered by Twilio for telephony integration and FastAPI as the backend server.
 
----
+ AI-Enabled Conversational IVR Modernization Framework (Milestone 3)
 
- **Features**
+ 📘 Project Overview
 
-1. **Interactive Voice Response (IVR)**  
-   Users can navigate menus using keypad input (DTMF).
+This project is part of my **Infosys Springboard Internship**.
+It aims to modernize traditional IVR (Interactive Voice Response) systems built on VoiceXML (VXML) by integrating **Conversational AI** and speech technologies.
+The goal is to make IVRs more natural, intelligent, and user-friendly with minimal rework of existing assets.
 
-2. **Recharge Functionality**  
-   Users can input recharge amounts and receive confirmation messages.
 
-3. **Issue Reporting**  
-   Users can record their issues via voice, which are stored in the mock database.
+🚀 Milestone Summary
 
-4. **FastAPI Backend**  
-   Handles call sessions, routing, and customer management.
+| Milestone       | Description                                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Milestone 1** | Study of legacy IVR workflows using VXML                                                                                                  |
+| **Milestone 2** | Twilio-based AI IVR backend developed and tested                                                                                          |
+| **Milestone 3** | **Web-based voice IVR** built with Python Speech-to-Text and Text-to-Speech, created **due to Twilio call limitations in the free trial** |
 
 ---
 
- **Project Structure**
+ 🧠 Key Features
 
- AI-Enabled-Conversational-IVR-Modernization-Framework
-AI-powered IVR system that modernizes customer support using FastAPI, Twilio, and conversational intelligence.
+* Fully **voice-based** backend (no frontend required)
+* **Speech-to-Text (STT)** using `speech_recognition`
+* **Text-to-Speech (TTS)** using `pyttsx3`
+* Smart **intent mapping** for:
 
+  * Recharge, Check Balance, Offers, Data Packs, Upgrade to Premium
+  * Customer Care: Network Issue, SIM Issue, Recharge Issue, Data Pack Issue
+* Interactive dialogue until user says “exit” or “thank you”
+* Dynamic recharge options and plan details
 
-## Setup
-1. Install Python 3.11 or above.
-2. Clone the repository:
-   git clone https://github.com/your-username/AI-Enabled-Conversational-IVR.git
-3. Install dependencies:
-   pip install -r requirements.txt
-4. Run the FastAPI server:
-   uvicorn msp_ivr_twilio:app --reload
-5. Expose via ngrok for Twilio integration:
-   ngrok http 8000
+---
+
+## ⚙️ Tech Stack
+
+| Component          | Technology                      |
+| ------------------ | ------------------------------- |
+| Language           | Python 3.10 +                   |
+| Framework          | FastAPI                         |
+| Speech Recognition | `speech_recognition`, `pyaudio` |
+| Text-to-Speech     | `pyttsx3`                       |
+| Database           | SQLite                          |
+| AI/NLU             | Rule-based Intent Mapping       |
+
+---
+
+## 🧩 Installation
+
+```bash
+pip install fastapi uvicorn pyttsx3 SpeechRecognition pyaudio
+python nazia_ivr_backend.py
+```
+
+---
+
+## 💬 Example Conversation
+
+**System:** “Welcome to SmartTel Modern IVR! Please say or enter your Customer ID.”
+**User:** “1001”
+**System:** “Hi Aiza! Would you like the main menu or talk to customer care?”
+**User:** “Recharge.”
+**System:** “Please choose a pack – ₹99, ₹249, ₹399 or custom amount.”
+**User:** “₹249.”
+**System:** “Recharge successful! Would you like to continue or exit?”
+
+---
+
+## 🧱 Architecture Flow
+
+```
+User Voice → Speech-to-Text → Intent Mapping → Backend Logic → Text-to-Speech → Voice Output
+```
+
+---
+
+## 🧾 Note
+
+> During Milestone 2, Twilio IVR was implemented successfully,
+> but due to **Twilio free-trial call restrictions**,
+> this **web-based voice IVR** version was developed for Milestone 3 using Python’s local speech modules.
+
