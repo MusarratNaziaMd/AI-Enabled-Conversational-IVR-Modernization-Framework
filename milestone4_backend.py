@@ -4,7 +4,7 @@ import sqlite3
 import time
 import logging
 from logging.handlers import RotatingFileHandler
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,send_file
 from flask_cors import CORS
 import pytest
 from flask_limiter import Limiter
@@ -15,7 +15,9 @@ from flask_limiter.util import get_remote_address
 app = Flask(__name__)
 CORS(app)
 
+
 limiter = Limiter(get_remote_address, app=app, default_limits=["200 per day", "50 per hour"])
+
 
 # ------------------ Logging Setup ------------------
 os.makedirs("logs", exist_ok=True)
@@ -143,6 +145,13 @@ def intent_unknown(cust):
     return msg
 
 # ------------------ Flask Endpoints ------------------
+
+ #Serve frontend HTML
+@app.route('/')
+def index():
+    return send_file('milestone4_frontend.html')  # <-- your frontend HTML file in same folder
+
+
 @app.route("/fetch_customer", methods=["POST"])
 def fetch_customer():
     try:
