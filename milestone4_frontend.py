@@ -211,6 +211,26 @@ async function showCustomerSupportMenu() {
         await speak(item);
     }
 }
+// ----------------- Show Main Menu -----------------
+async function showMenu() {
+    const items = [
+        "Check balance",
+        "Plan details",
+        "Latest offers",
+        "Data upgrade",
+        "Recharge",
+        "Talk to customer care"
+    ];
+    for (let item of items) {
+        const div = document.createElement("div");
+        div.className = "menu-item";
+        div.textContent = item;
+        logDiv.appendChild(div);
+        logDiv.scrollTop = logDiv.scrollHeight;
+        await speak(item);
+    }
+}
+
 
 // ----------------- Handle Intent -----------------
 async function handleIntent(cid, text) {
@@ -350,17 +370,23 @@ async function mainFlow() {
 
         // ---------------- Initial Choice ----------------
         let initialChoice = await safeListen("Do you want to access the main menu or talk to customer care?");
-        initialChoice = initialChoice.toLowerCase();
-        if (initialChoice.includes("menu")) {
+        if (initialChoice.includes("menu"))
+         {
             await showMenu();
-            let firstIntent = await safeListen();
-            await handleIntent(cidActive, firstIntent);
-        } else if (initialChoice.includes("customer") || initialChoice.includes("care")) {
+            let firstIntent = await safeListen("Please choose an option from the menu.");
+            if(firstIntent) await handleIntent(cidActive, firstIntent);
+        } 
+        else if (initialChoice.includes("customer") || initialChoice.includes("care"))
+         {
+            await showCustomerSupportMenu();
             let issue = await safeListen("Please describe your issue.");
-            await handleIntent(cidActive, issue);
-        } else {
-            await handleIntent(cidActive, initialChoice);
-        }
+            if(issue) await handleIntent(cidActive, issue);
+        } 
+        else
+        {
+           await handleIntent(cidActive, initialChoice);
+         }
+
 
         // ---------------- Conversational Loop ----------------
         let continueSession = true;
